@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Bar, Doughnut, Line } from 'react-chartjs-2'
-import axios from 'axios'
+import { Bar, Doughnut, Line, defaults } from 'react-chartjs-2'
+import axios from 'axios';
+import moment from 'moment';
+import useInterval from 'use-interval';
+
+
+defaults.color = 'white';
+defaults.backgroundColor = 'rgb(255,255,255)';
 
 const Contents = () => {
+
 
 	const [confirmedData, setConfirmedData] = useState({})
 	const [quarantinedData, setQuarantinedData] =useState({})
@@ -12,7 +19,14 @@ const Contents = () => {
 	useEffect(() => {
 		const fetchEvents = async () => {
 			const res = await axios.get('https://api.covid19api.com/total/dayone/country/kr');
+			const todayConfirmed = await (res.data[res.data.length -1].Confirmed) - (res.data[res.data.length -2].Confirmed);
+			console.log(res.data);
 			makeData(res.data)
+
+			const today = res.data[res.data.length -1];
+			console.log(today.Date, today.Confirmed);
+
+
 		}
 		const makeData = (items) => {
 			const arr = items.reduce((acc, cur) => {
@@ -51,6 +65,7 @@ const Contents = () => {
 				datasets: [
 					{
 						label: '국내 누적	확진자',
+						fontColor: 'black',
 						backgroundColor: 'salmon',
 						fill: true,
 						data: arr.map(a => a.confirmed)
@@ -89,15 +104,33 @@ const Contents = () => {
 		fetchEvents();
 	}, [])
 
+	const localTime = moment().format('YYYY-MM-DD HH-mm-ss'); // store localTime
+	const proposedDate = localTime + "T00:00:00.000Z";
+
+
+	const [realTime, setRealTime] = useState(Date.now());
+
+	// useInterval
+	useInterval(() => {
+		setRealTime(Date.now());
+	}, 1000);
+
+
+	// let lolol = realTime.seconds();
+	// console.log(lolol);
+
 	return (
 		<section>
 			<h2>국내 코로나 현황</h2>
 			<div className='contents'>
 				<div>
-					<Bar data={ confirmedData } options={
+					<Bar
+						data={ confirmedData }
+						options={
 						{ title: { display: true, text: '누적 확진자 추이', fontSize: 16 } },
 						{ legend: { display: true, position: 'bottom' } }
-					} />
+						}
+					/>
 				</div>
 				<div>
 					<Line data={ quarantinedData } options={
@@ -112,6 +145,7 @@ const Contents = () => {
 					} />
 				</div>
 			</div>
+			<div>{localTime}</div>
 		</section>
 	)
 }

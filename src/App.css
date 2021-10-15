@@ -1,3 +1,12 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 10px;
+}
+
 
 .App {
 
@@ -16,7 +25,7 @@
 }
 
 .main.active {
-	right : 300px;
+	right : 30%;
 	transition: .5s;
 }
 
@@ -33,16 +42,16 @@
 	color: #a10101;
 }
 
-.header select {
-	height: 30px;
-	width: 140px;
-	border-radius: 5px;
-	border: none;
-}
+/*.header select {*/
+/*	height: 30px;*/
+/*	width: 140px;*/
+/*	border-radius: 5px;*/
+/*	border: none;*/
+/*}*/
 
 .toggle {
-	width: 30px;
-	height: 30px;
+	width: 3rem;
+	height: 3rem;
 	background: url(https://i.ibb.co/HrfVRcx/menu.png);
 }
 
@@ -95,7 +104,7 @@ section {
 	position: absolute;
 	top: 0;
 	right: 0;
-	width: 300px;
+	width: 30%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -118,3 +127,12 @@ section {
 .menu a:hover {
 	color: #a10101;
 }
+
+
+
+@media (min-width: 576px) {
+	html {
+		font-size: 13px;
+	}
+}
+
