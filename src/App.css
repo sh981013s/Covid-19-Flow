@@ -7,6 +7,7 @@
 }
 
 .header {
+	height: 7vh;
 	padding: 1rem 2rem;
 	background: #101010;
 	display: flex;
@@ -33,4 +34,32 @@ section {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 2rem;
+}
+
+.homeBox {
+	width: 100%;
+	min-height: 93vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.homeBoxImg {
+	width: 30rem;
+	height: 30rem;
+}
+
+.homeBoxImg img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.homBoxCard {
+	font-size: 2.5rem;
+	text-align: center;
+}
+
+.smDesc {
+	font-size: 1.3rem;
 }
