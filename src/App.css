@@ -1,9 +1,23 @@
+
 .App {
-	background: rgba(16, 16, 16, 0.77);
-	min-height: 100vh;
+
+}
+
+.main {
 	width: 100%;
+	min-height: 100vh;
+	position: absolute;
+	top: 0;
+	right: 0;
 	display: flex;
 	flex-direction: column;
+	background: #474747;
+	transition: .5s;
+}
+
+.main.active {
+	right : 300px;
+	transition: .5s;
 }
 
 .header {
@@ -24,6 +38,19 @@
 	width: 140px;
 	border-radius: 5px;
 	border: none;
+}
+
+.toggle {
+	width: 30px;
+	height: 30px;
+	background: url(https://i.ibb.co/HrfVRcx/menu.png);
+}
+
+
+.toggle.active {
+	background-size: 25px;
+	background: url(https://i.ibb.co/rt3HybH/close.png) no-repeat center;
+	cursor: pointer;
 }
 
 section {
@@ -62,4 +89,32 @@ section {
 
 .smDesc {
 	font-size: 1.3rem;
+}
+
+.menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 300px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #343434;
+	z-index: -1;
+}
+
+.menu li {
+	list-style: none;
+	margin-bottom: 2rem;
+}
+
+.menu a {
+	text-decoration: none;
+	font-size: 2rem;
+	color: #000;
+}
+
+.menu a:hover {
+	color: #a10101;
 }
